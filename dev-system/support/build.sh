@@ -10,14 +10,14 @@
 # them in internal ones for building. If this is set then the maven repo will be updated to use this.
 
 date && echo "Installing all apps and generating API documentation" &&
-(cd .. && lein 'install-with-content!')
+(cd .. && lein 'install-with-content-no-clean!')
 if [ $? -ne 0 ] ; then
   echo "Failed to install apps and generate docs" >&2
   exit 1
 fi
 # The library is reinstalled after installing gems so that it will contain the gem code.
 date && echo "Installing collection renderer gems and reinstalling library" &&
-(cd ../collection-renderer-lib && lein do install-gems, install, clean)
+(cd ../collection-renderer-lib && lein 'install!')
 if [ $? -ne 0 ] ; then
   echo "Failed to install gems" >&2
   exit 1
